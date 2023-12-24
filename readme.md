@@ -12,3 +12,6 @@ npm i express ejs body-parser dotenv mongoose
 Better way to nodemon : 
 1. Installing it globally : npm i nodemon -g
 2. To run the server : nodemon fileName.js 
+
+### To checkout the installed npm packages : 
+npm ls --depth=0
