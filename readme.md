@@ -13,24 +13,13 @@ into the development branch
 npm create vite@latest .         // initializing the project inside the client folder
 npm i 
 
-npm i -D tailwindcss postcss autopredixer
-npx tialwaindcss init -p
-
+npm install react-bootstrap bootstrap   // installing react-bootstrap
 {
-    //add the following in the tailwind.config.js
-    content: [
-        "./index.html",
-        "./src/**/*.{js,ts,jsx,tsx}",
-    ],
+    // add the following line in App.jsx for importing bootstrap : 
+    import 'bootstrap/dist/css/bootstrap.min.css';
 }
 
-{
-    // add the following in main .css file : (index.css)
-    @tailwind base;
-    @tailwind components;
-    @tailwind utilities;
-}
-
+// PS : don't use both bootstrap and tailwindcss in the same project, will cause issues 
 
 
 
@@ -50,7 +39,8 @@ npm ls --depth=0
 
 ### Making the production grade folders for the project : 
 ---
-**mkdir controllers db middlewares models routes utils**
+**New-Item -ItTemType Directory -Path "controller"s", "db", "middlewares", "models",e "routes", "utils"**
+Above is a line to create folders (directories) using powershell
 1. Controllers - where major functionality kept here
 2. db - folder where how to connect to our db is kept 
 3. middlewares - code which is middle of comms. eg : get me the request machine cookies to check if they have access to this information from the servers
