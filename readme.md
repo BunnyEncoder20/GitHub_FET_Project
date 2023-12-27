@@ -17,9 +17,15 @@ npm install react-bootstrap bootstrap   // installing react-bootstrap
 {
     // add the following line in App.jsx for importing bootstrap : 
     import 'bootstrap/dist/css/bootstrap.min.css';
+
+    // add the following line in the index.html
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
 }
 
-// PS : don't use both bootstrap and tailwindcss in the same project, will cause issues 
+// PS : 
+    1. don't use both bootstrap and tailwindcss in the same project, will cause issues 
+    2. remove all the things in index.css, App.css file when using bootstrap components
+    3. If you to add more styling/modify, create a component.css in that components's folder and add teh css there
 
 
 
