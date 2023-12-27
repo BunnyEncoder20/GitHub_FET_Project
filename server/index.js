@@ -2,6 +2,7 @@ const express = require('express')
 const ejs = require('ejs')
 const mongoose = require('mongoose')
 const body_parser = require('body-parser')
+const dotenv = require('dotenv')
 
 const app = express()            // initializing the app
 app.set('view engine' , 'ejs')  //  setting the view engine to ejs

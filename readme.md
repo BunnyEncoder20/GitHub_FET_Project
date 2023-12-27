@@ -10,7 +10,7 @@ into the development branch
 
 
 ## Client : 
-npm crate vite@latest .         // initializing the project inside the client folder
+npm create vite@latest .         // initializing the project inside the client folder
 npm i 
 
 npm i -D tailwindcss postcss autopredixer
