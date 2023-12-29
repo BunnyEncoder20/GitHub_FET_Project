@@ -3,10 +3,11 @@ const bodyParser = require('body-parser')
 const dotenv = require('dotenv')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
-const userModel = require('../models/userModel')
+const userModelref = require('../models/userModel')
 
 // Creating a instance of Router : 
 const router = express.Router()
+
 
 // initial get request 
 router.get('/' , (req,res) => {
@@ -74,30 +75,33 @@ router.post('/login', async (req, res) => {
 // Route for signup
 router.post('/signup', async (req, res) => {
     try {
-        const { mName, mEmail, mPassword } = req.body;
+        console.log(req.body)
+        const { uname, umobile, uemail, upwd } = req.body;
         // Check if the required properties are present in the request body
-        if (!mName || !mEmail || !mPassword) {
+        if (!uname || !umobile || !uemail || !upwd) {
             return res.status(400).json({
                 status: 'FAIL',
                 msg: 'Incomplete data',
             });
         }
+
         // else making the document 
         let saltRounds = 10 //this is basically the rounds of encryption the password will undergo
-        const encryptedPassword = await bcrypt.hash(mPassword, saltRounds);   // 
-        await memberModelref.create({
-            mName,
-            mEmail,
-            mPassword: encryptedPassword
+        const encryptedPassword = await bcrypt.hash(upwd, saltRounds);   // 
+        await userModelref.create({
+            name: uname,
+            phone: umobile,
+            email: uemail,
+            password: encryptedPassword
         })
         res.json({
             status: 'SUCCESS',
-            user: mName,
+            user: uname,
             msg: ' user added'
         })
     }
     catch (err) {
-        
+        console.log(err);
         res.status(500).json({
             status: 'FAIL',
             msg: 'Something went wrong while adding user',

@@ -1,11 +1,15 @@
 import { useState, useEffect } from 'react' 
+
 import styles from './Signup.module.css'
 import logo from '../../assets/Login-musicartlogo.png'
+import axios from 'axios'
+
 import { Footer } from '../Footer/Footer'
 import { Link } from "react-router-dom"
-
-
 import { Form, Button } from 'react-bootstrap';
+
+
+
 
 export const Signup = () => {
 
@@ -19,24 +23,24 @@ export const Signup = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        
-        console.log("HandleSubmit called !");
-        console.log(newUser);
-        // axios
-        //     .post('http://localhost:4000/users' , newUser)          // notice that we are using a post call here and sending the data in the 2nd param
-        //     .then(() => {
-        //             console.log("User added Successfully !")
 
-        //             // clearing the form : 
-        //             setNewUser({
-        //                 first_name: '',
-        //                 last_name: '',
-        //                 email: '',
-        //                 avatar: ''
-        //             })
-        //         }
-        //     )
-        //     .catch((err) => console.log("[ERROR] : ", err))
+        // console.log("HandleSubmit called !");
+        // console.log(newUser);
+        axios
+            .post('http://localhost:4000/FET/signup' , newUser)          // notice that we are using a post call here and sending the data in the 2nd param
+            .then(() => {
+                    console.log("User sent Successfully !")
+
+                    // clearing the form : 
+                    setNewUser({
+                        uname: '',
+                        umobile: '',
+                        uemail: '',
+                        upwd: ''
+                    })
+                }
+            )
+            .catch((err) => console.log("[ERROR] : ", err))
             
     }
 

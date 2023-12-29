@@ -11,11 +11,12 @@ const serverRoutes = require('./routes/serverRoutes');
 const app = express()            // initializing the app
 app.set('view engine' , 'ejs')  //  setting the view engine to ejs
 dotenv.config()
+const cors = require('cors')
 
 // setting up the universal middlewares 
 app.use(body_parser.urlencoded({extended:false}))     // body-parser for urlencoded 
 app.use(body_parser.json())
-app.use(express.static('./public'))                                 // making public folder available to all files 
+app.use(cors())                           // making public folder available to all files 
 
 
 // Starting the Server 
