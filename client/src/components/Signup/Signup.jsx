@@ -5,10 +5,8 @@ import logo from '../../assets/Login-musicartlogo.png'
 import axios from 'axios'
 
 import { Footer } from '../Footer/Footer'
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { Form, Button } from 'react-bootstrap';
-
-
 
 
 export const Signup = () => {
@@ -20,14 +18,17 @@ export const Signup = () => {
         upwd: ''
     })
 
+    const navigate = useNavigate();     // Note that in react-router-dom latest version (at this time v6) .useHistory() is replaced with .useNavigate()
 
     const handleSubmit = (e) => {
         e.preventDefault()
 
         // console.log("HandleSubmit called !");
-        // console.log(newUser);
+        // console.log(newUser)
+
+        // NOTE that .env is part of lastest react just declare the sensitive variables like : REACT_APP_SENSITIVE_VARIABLE in a .env file in root of project
         axios
-            .post('http://localhost:4000/FET/signup' , newUser)          // notice that we are using a post call here and sending the data in the 2nd param
+            .post(`${process.env.REACT_APP_BASE_URL}/FET/signup` , newUser)          // notice that we are using a post call here and sending the data in the 2nd param
             .then(() => {
                     console.log("User sent Successfully !")
 
@@ -38,9 +39,13 @@ export const Signup = () => {
                         uemail: '',
                         upwd: ''
                     })
+
+                    navigate('/login');
                 }
             )
             .catch((err) => console.log("[ERROR] : ", err))
+        
+        
             
     }
 
