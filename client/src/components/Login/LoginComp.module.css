@@ -1,0 +1,77 @@
+.container {
+    width: 32%; /* Adjust the width as needed */
+    height: auto;   
+    padding: 2% 2%;
+    border-radius: 23.201px;
+    border: 3px solid #D9D9D9;
+    background: #FFF;
+    text-align: left;
+    box-sizing: border-box; /* Include padding in the width and height */
+
+    margin: 10px auto ;
+}
+
+.container h1 {
+    color: #000;
+    font-family: 'Roboto', sans-serif;
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.container Button {
+    width: 100%;
+}
+
+h1 {
+    color: #2E0052;
+    font-family: 'Roboto', sans-serif;
+    font-size: 34.13px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+
+    padding-top: 1%;
+    padding-bottom: 1%;
+}
+
+img {
+    width: 53px;
+    height: 53px;
+    flex-shrink: 0;
+}
+
+
+.signup {
+
+    padding-top: 2%;
+    padding-bottom: 2%;
+
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+}
+
+.signup::before,
+.signup::after {
+    content: '';
+    flex: 1;
+    border-bottom: 5px solid #BDBDBD;
+    max-width: 9.8%;
+}
+
+.signup:not(:empty)::before {
+    margin-right: 2em;
+}
+
+.signup:not(:empty)::after {
+    margin-left: 2em;
+}
+
+.signup_btn Button {
+    width: 31.5%;
+    padding-top: 1%;
+    padding-bottom: 1%;
+}

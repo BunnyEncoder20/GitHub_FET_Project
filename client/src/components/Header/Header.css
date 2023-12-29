@@ -1,0 +1,23 @@
+.header {
+    color: aliceblue;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: #2E0052;
+    text-align: center;
+    height: 30px;
+    flex-shrink: 0;
+    padding:0.2% 1%;
+    display: flex;
+    justify-content: space-between;
+}
+
+svg{
+    padding-right: 10px;
+}
+
+a {
+    text-decoration: none;
+    color: aliceblue;
+}
