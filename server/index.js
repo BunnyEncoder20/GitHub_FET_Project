@@ -4,12 +4,17 @@ const mongoose = require('mongoose')
 const body_parser = require('body-parser')
 const dotenv = require('dotenv')
 
+
+// Modular imports
+const serverRoutes = require('./routes/serverRoutes');
+
 const app = express()            // initializing the app
 app.set('view engine' , 'ejs')  //  setting the view engine to ejs
 dotenv.config()
 
-// setting up the middlewares 
+// setting up the universal middlewares 
 app.use(body_parser.urlencoded({extended:false}))     // body-parser for urlencoded 
+app.use(body_parser.json())
 app.use(express.static('./public'))                                 // making public folder available to all files 
 
 
@@ -22,12 +27,7 @@ app.listen(process.env.PORT , () => {
 })
 
 
-// initial get request 
-app.get('/' , (req,res) => {
-    res.json({
-        Title : "Server of GitHub FET Project" ,
-        Author : "Varun Verma" ,
-        msg : "Server has started successfully"
-    })
-})
+// Mount the server Routes at the '/server5' path
+app.use('/FET', serverRoutes);
+
 
