@@ -7,7 +7,7 @@ const userModelref = require('../models/userModel')
 
 // Creating a instance of Router : 
 const router = express.Router()
-
+dotenv.config()
 
 // initial get request 
 router.get('/' , (req,res) => {
@@ -22,9 +22,10 @@ router.get('/' , (req,res) => {
 // Route for Login
 router.post('/login', async (req, res) => {
     try {
-        const { email, pwd } = req.body;
+        // console.log(req.body) 
+        const { uemail, upwd } = req.body;
         // checking if data has come or not 
-        if (!email || !pwd) {
+        if (!uemail || !upwd) {
             return res.status(400).json({
                 status: 'FAIL',
                 msg: 'Incomplete data',
@@ -32,32 +33,39 @@ router.post('/login', async (req, res) => {
         }
 
         // Quering the DB to find the specific user
-        const user = await memberModelref.findOne({ mEmail })
+        const user = await userModelref.findOne({ email:uemail })
+        console.log(user)
+       
+            
 
         // If user doesn't exist : 
         if (!user) {
-            return res.status(404).json({
+            return res.status(400).json({
                 status: 'FAIL',
                 msg: '[Mongo] email not found',
             })
         }
-
-        // if the password matches or not 
-        const samePassword = await bcrypt.compare(mPassword, user.mPassword)
+        
+        // comparing the password entered and in db : 
+        const samePassword = await bcrypt.compare(upwd, user.password)  
+        // if the password is not same 
         if (!samePassword) {
-            return res.status(404).json({
+            return res.status(400).json({
                 status: 'FAIL',
-                msg: '[Mongo] Incorrect Password',
+                msg: '[Mongo] Incorrect password',
             })
         }
 
-        const JWTToken = jwt.sign(user.toJSON(), process.env.JWT_PASSWORD, { expiresIn:60 })
+         
+        
+
+        const JWTToken = jwt.sign(user.toJSON(), process.env.JWT_PASSWORD, { expiresIn:'5m' })
 
         // else return the user info : 
         res.json({
             Status: "SUCCESS",
-            msg: `${user.mName} login successful` ,
-            token: JWTToken         // look at the JWT token 
+            msg: `${user.name} login successful` ,
+            token: JWTToken         // to look at the JWT token 
         })
 
     }

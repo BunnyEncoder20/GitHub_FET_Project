@@ -26,7 +26,7 @@ export const Signup = () => {
         // console.log("HandleSubmit called !");
         // console.log(newUser)
 
-        // NOTE that .env is part of lastest react just declare the sensitive variables like : REACT_APP_SENSITIVE_VARIABLE in a .env file in root of project
+        
         axios
             .post(`${process.env.REACT_APP_BASE_URL}/FET/signup` , newUser)          // notice that we are using a post call here and sending the data in the 2nd param
             .then(() => {

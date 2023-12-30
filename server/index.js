@@ -16,10 +16,12 @@ const cors = require('cors')
 // setting up the universal middlewares 
 app.use(body_parser.urlencoded({extended:false}))     // body-parser for urlencoded 
 app.use(body_parser.json())
-app.use(cors())                           // making public folder available to all files 
+app.use(cors())                           // allowing cross site access
+app.use('/FET', serverRoutes);  // Mount the server Routes at the '/FET' path
 
 
-// Starting the Server 
+
+// Starting the Server & connecting to DB
 app.listen(process.env.PORT , () => {
     mongoose
         .connect(process.env.MONGODB_URL)
@@ -28,7 +30,7 @@ app.listen(process.env.PORT , () => {
 })
 
 
-// Mount the server Routes at the '/server5' path
-app.use('/FET', serverRoutes);
+
+
 
 
