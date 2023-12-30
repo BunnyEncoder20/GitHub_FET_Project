@@ -97,3 +97,79 @@
     right: 2%;
     position: absolute;
 }
+
+
+/* SearchBar */
+.search_bar {
+    display: flex;
+    align-items: center;
+    border: 1px solid #ccc;
+    border-radius: 50px;
+    padding: 5px;
+    margin-top: 1%  ;
+    margin-bottom : 1%;
+  }
+  
+  .search_bar input {
+    flex: 1;
+    padding: 8px;
+    border: none;
+    border-radius: 5px;
+    outline: none;
+
+    font-size: 3vh;
+  }
+  
+  .search_bar button {
+    background-color: transparent;
+    padding: 0.2% 1%;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  .search_bar button img {
+    height: 5vh;
+    width: 2.5vw;
+  }
+
+
+/* Functionality Container */
+.functionalityContainer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* view-filter container */
+.view_filter {
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    gap: 10%;
+}
+
+  /* Views */
+.views {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.view_btns {
+    background-color: transparent;
+    border: none;
+}
+
+/* Filters */
+.filters {
+    display: flex;
+    align-items: center;
+    justify-content: space-between  ;
+    gap: 5%;
+}
+/* Style for each dropdown */
+.dropdown {
+    background-color: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.5); /* Transparent white border */
+    border-radius: 50px; /* Adjust the border-radius as needed */
+}
