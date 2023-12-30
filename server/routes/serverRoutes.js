@@ -10,11 +10,11 @@ const router = express.Router()
 dotenv.config()
 
 // initial get request 
-router.get('/' , (req,res) => {
+router.get('/', (req, res) => {
     res.json({
-        Title : "Server of GitHub FET Project" ,
-        Author : "Varun Verma" ,
-        msg : "Server has started successfully"
+        Title: "Server of GitHub FET Project",
+        Author: "Varun Verma",
+        msg: "Server has started successfully"
     })
 })
 
@@ -33,10 +33,10 @@ router.post('/login', async (req, res) => {
         }
 
         // Quering the DB to find the specific user
-        const user = await userModelref.findOne({ email:uemail })
+        const user = await userModelref.findOne({ email: uemail })
         console.log(user)
-       
-            
+
+
 
         // If user doesn't exist : 
         if (!user) {
@@ -45,9 +45,9 @@ router.post('/login', async (req, res) => {
                 msg: '[Mongo] email not found',
             })
         }
-        
+
         // comparing the password entered and in db : 
-        const samePassword = await bcrypt.compare(upwd, user.password)  
+        const samePassword = await bcrypt.compare(upwd, user.password)
         // if the password is not same 
         if (!samePassword) {
             return res.status(400).json({
@@ -56,15 +56,15 @@ router.post('/login', async (req, res) => {
             })
         }
 
-         
-        
 
-        const JWTToken = jwt.sign(user.toJSON(), process.env.JWT_PASSWORD, { expiresIn:'5m' })
+
+
+        const JWTToken = jwt.sign(user.toJSON(), process.env.JWT_PASSWORD, { expiresIn: '5m' })
 
         // else return the user info : 
         res.json({
             Status: "SUCCESS",
-            msg: `${user.name} login successful` ,
+            msg: `${user.name} login successful`,
             token: JWTToken         // to look at the JWT token 
         })
 

@@ -1,0 +1,99 @@
+.biggest {
+    width: 98%;
+}
+
+.toppart {
+    display: flex;
+    /* Align items vertically in the center */
+    align-items: flex-end;
+
+    justify-content: left;
+    padding-top: 2%;
+    /* Add padding for spacing */
+    background-color: #fff;
+    /* background-color: rgb(195, 187, 187); */
+    /* Optional background color for seeing the outline  */
+}
+
+/* .toppart .breadcrumb {
+    padding-top: 6px;
+    padding-bottom: 0 ;
+    margin-bottom: 0;
+    
+} */
+
+.header {
+    display: flex;
+    align-items: center;
+    /* Align items vertically in the center */
+
+    color: #2E0052;
+    font-family: 'Roboto', sans-serif;
+    font-size: 50px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    padding-top: 1%;
+    padding-bottom: 1.5%;
+    margin-bottom: 0;
+    margin-right: 2%;
+}
+
+.header img {
+    margin-left: 2%;
+    margin-right: 2px;
+}
+
+
+/* Discount Banner */
+.discount {
+    height: 50%;
+    border-radius: 29px;
+    background: linear-gradient(90deg, #7286B4 0%, #E794CE 100%);
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    position: relative;
+}
+
+.discount .lhs h1 {
+    color: #2E0052;
+    font-family: 'Roboto', sans-serif;
+    font-size: 68.585px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+
+    padding-top: 4%;
+    padding-bottom: 0%;
+}
+
+.lhs {
+    padding-left: 4%;
+}
+
+.lhs .btn {
+    color: #FFF;
+    font-family: 'Roboto', sans-serif;
+    font-size: 27px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+
+    border-radius: 30px;
+    background: #2E0052;
+    padding: 2% 10%;
+
+    margin-top: 3%;
+    margin-bottom: 5%;
+}
+
+.discount img {
+    height: 50vh;
+    width: 35vw;
+    bottom: 0%;
+    right: 2%;
+    position: absolute;
+}

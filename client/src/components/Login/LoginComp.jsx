@@ -13,29 +13,29 @@ import { Form, Button } from 'react-bootstrap';
 export const LoginComp = () => {
 
     const navigate = useNavigate();     // Note that in react-router-dom latest version (at this time v6) .useHistory() is replaced with .useNavigate()
-    
+
     const [user, setUser] = useState({
-        uemail : '' ,
-        upwd : ''
+        uemail: '',
+        upwd: ''
     });
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        console.log("HandleSubmit called !") ;
+        console.log("HandleSubmit called !");
         axios
-            .post(`${process.env.REACT_APP_BASE_URL}/FET/login` , user)          // notice that we are using a post call here and sending the data in the 2nd param
+            .post(`${process.env.REACT_APP_BASE_URL}/login`, user)          // notice that we are using a post call here and sending the data in the 2nd param
             .then((res) => {
-                    console.log("User sent Successfully !\n",res.data)
-                    const jwtToken = res.data.token ;
-                    console.log('Token : ', jwtToken)
-                    // clearing the form : 
-                    setUser({
-                        uemail: '',
-                        upwd: ''
-                    })
+                console.log("User sent Successfully !\n", res.data)
+                const jwtToken = res.data.token;
+                console.log('Token : ', jwtToken)
+                // clearing the form : 
+                setUser({
+                    uemail: '',
+                    upwd: ''
+                })
 
-                    navigate('/');
-                }
+                navigate('/');
+            }
             )
             .catch((err) => console.log("[ERROR] : ", err))
     }
@@ -53,15 +53,15 @@ export const LoginComp = () => {
                 <Form onSubmit={handleSubmit}>
                     <Form.Group className="mb-3" controlId="formBasicEmail">
                         <Form.Label><b>Enter your email</b></Form.Label>
-                        <Form.Control type="email" value={user.uemail} onInput={ (e) => {
-                            setUser({...user , uemail: e.target.value})
-                        }}/>
+                        <Form.Control type="email" value={user.uemail} onInput={(e) => {
+                            setUser({ ...user, uemail: e.target.value })
+                        }} />
                     </Form.Group>
 
                     <Form.Group className="mb-3" controlId="formBasicPassword">
                         <Form.Label><b>Password</b></Form.Label>
-                        <Form.Control type="password" value={user.upwd} onInput={ (e) => {
-                            setUser({...user , upwd: e.target.value})
+                        <Form.Control type="password" value={user.upwd} onInput={(e) => {
+                            setUser({ ...user, upwd: e.target.value })
                         }} />
                     </Form.Group>
 

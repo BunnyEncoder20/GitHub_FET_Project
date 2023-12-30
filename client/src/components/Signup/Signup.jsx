@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react' 
+import { useState, useEffect } from 'react'
 
 import styles from './Signup.module.css'
 import logo from '../../assets/Login-musicartlogo.png'
@@ -26,27 +26,27 @@ export const Signup = () => {
         // console.log("HandleSubmit called !");
         // console.log(newUser)
 
-        
+
         axios
-            .post(`${process.env.REACT_APP_BASE_URL}/FET/signup` , newUser)          // notice that we are using a post call here and sending the data in the 2nd param
+            .post(`${process.env.REACT_APP_BASE_URL}/signup`, newUser)          // notice that we are using a post call here and sending the data in the 2nd param
             .then(() => {
-                    console.log("User sent Successfully !")
+                console.log("User sent Successfully !")
 
-                    // clearing the form : 
-                    setNewUser({
-                        uname: '',
-                        umobile: '',
-                        uemail: '',
-                        upwd: ''
-                    })
+                // clearing the form : 
+                setNewUser({
+                    uname: '',
+                    umobile: '',
+                    uemail: '',
+                    upwd: ''
+                })
 
-                    navigate('/login');
-                }
+                navigate('/login');
+            }
             )
             .catch((err) => console.log("[ERROR] : ", err))
-        
-        
-            
+
+
+
     }
 
 
@@ -62,30 +62,30 @@ export const Signup = () => {
                 <Form onSubmit={handleSubmit}>
                     <Form.Group className="mb-3" controlId="formBasicEmail">
                         <Form.Label><b>Name</b></Form.Label>
-                        <Form.Control type="text" value={newUser.uname}  onInput={ (e) => {
+                        <Form.Control type="text" value={newUser.uname} onInput={(e) => {
                             setNewUser({ ...newUser, uname: e.target.value })
-                        }}/>
+                        }} />
                     </Form.Group>
 
                     <Form.Group className="mb-3" controlId="formBasicEmail">
                         <Form.Label><b>Mobile Number</b></Form.Label>
-                        <Form.Control type='tel' value={newUser.umobile} onInput={ (e) => {
+                        <Form.Control type='tel' value={newUser.umobile} onInput={(e) => {
                             setNewUser({ ...newUser, umobile: e.target.value })
-                        }}/>
+                        }} />
                     </Form.Group>
 
                     <Form.Group className="mb-3" controlId="formBasicEmail">
                         <Form.Label><b>Email Id</b></Form.Label>
-                        <Form.Control type="email"  value={newUser.uemail} onInput={ (e) => {
+                        <Form.Control type="email" value={newUser.uemail} onInput={(e) => {
                             setNewUser({ ...newUser, uemail: e.target.value })
                         }} />
                     </Form.Group>
 
                     <Form.Group className="mb-3" controlId="formBasicPassword">
                         <Form.Label><b>Password</b></Form.Label>
-                        <Form.Control type="password" value={newUser.upwd} onInput={ (e) => {
+                        <Form.Control type="password" value={newUser.upwd} onInput={(e) => {
                             setNewUser({ ...newUser, upwd: e.target.value })
-                        }}/>
+                        }} />
                     </Form.Group>
 
                     <Form.Group>
