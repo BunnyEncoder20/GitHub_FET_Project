@@ -1,26 +1,15 @@
-import { React, useState, useEffect } from 'react';
+import { React } from 'react';
 import styles from './GridView.module.css'
 
-import axios from 'axios';
+
 
 
 // Importing bootstrap 
 import { Card, Col, Row } from 'react-bootstrap'
 
-export const GridView = () => {
+export const GridView = ({ items }) => {
 
-    const [items, setItems] = useState([]);
-
-    useEffect(() => {
-        axios
-            .get(`${process.env.REACT_APP_BASE_URL}/listing`)
-            .then((res) => {
-                console.log("Fetching DB data from server...\n")
-                // console.log(res.data.items)
-                setItems(res.data.items)
-            })
-            .catch((err) => console.log("[ERROR] : ", err))
-    })
+    
 
     return (
         <>

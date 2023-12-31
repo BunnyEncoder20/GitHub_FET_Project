@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 import styles from './Listing.module.css'
 import logo from '../../assets/Login-musicartlogo.png'
@@ -10,7 +10,7 @@ import gridicon_active from '../../assets/grid-active.svg'
 import listicon from '../../assets/list.png'
 import listicon_active from '../../assets/list-active.png'
 
-
+import axios from 'axios';
 
 import { Header } from '../Header/Header'
 import { Footer } from '../Footer/Footer'
@@ -32,11 +32,57 @@ export const Listing = () => {
     const [checked, setChecked] = useState(false);
     const [view, setView] = useState('grid');
 
+    // For fetched the items from the db 
+    const [items, setItems] = useState([]);
+
+    // for Searching
+    const [searchQuery, setSearchQuery] = useState('');
+
+    // for Filtering 
+    const [filters, setFilters] = useState({
+        headphoneType: null,
+        company: null,
+        color: null,
+        price: null,
+      });
+    
+
     const handleViewChange = (val) => {
         setView(val)
         console.log("view set to : ", val)
     }
 
+    //Searching 
+    const handleSearchChange = (e) => {
+        setSearchQuery(e.target.value);
+    };
+
+    const fetchData = () => {
+        axios
+            .get(`${process.env.REACT_APP_BASE_URL}/listing`, { params: { search: searchQuery } })
+            .then((res) => {
+                console.log("Fetching DB data from server...\n")
+                // console.log(res.data.items)
+                setItems(res.data.items)
+            })
+            .catch((err) => console.log("[ERROR] : in fetching items from db....\n", err))
+    }
+    
+
+    
+
+    useEffect(() => {
+        fetchData() ;
+    }, [searchQuery]);     // empty dependancy array ensures that this runs only once on mount  
+
+  
+
+    
+
+    // filtering
+
+
+    // Sorting 
 
     return (
         <>
@@ -74,7 +120,7 @@ export const Listing = () => {
                     <button type="button">
                         <img src={searchIcon} alt="search icon" />
                     </button>
-                    <input type="text" placeholder="Search Product" />
+                    <input type="text" placeholder="Search Product" onInput={handleSearchChange}/>
                 </div>
 
                 {/* buttons for view, filter, sort */}
@@ -222,9 +268,9 @@ export const Listing = () => {
                 {/* Listing */}
                 <Container fluid className={styles.listing}>
                     {view === 'grid' ? (
-                        <GridView />
+                        <GridView items={items} />
                     ) : (
-                        <ListView />
+                        <ListView items={items} />
                     )}
                 </Container>
             </Container>
