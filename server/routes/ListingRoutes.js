@@ -48,6 +48,7 @@ router.get('/listing', async (req, res) => {
         }
 
         // Check and modify the query based on the sort parameter
+        let sortCriteria = {} ;
         if (req.query.sort) {
             if (req.query.sort === 'l2h') {
               sortCriteria = { iprice: 1 }; // low to high
@@ -59,6 +60,7 @@ router.get('/listing', async (req, res) => {
               sortCriteria = { ititle: -1 }; // reverse alphabetically
             }
           }
+        
 
         // finally querying the db
         console.log('Query : ', query);
