@@ -9,6 +9,7 @@ import gridicon from '../../assets/grid.png'
 import gridicon_active from '../../assets/grid-active.svg'
 import listicon from '../../assets/list.png'
 import listicon_active from '../../assets/list-active.png'
+import removeicon from '../../assets/remove.png'
 
 import axios from 'axios';
 
@@ -28,6 +29,10 @@ const homeLink = `${process.env.REACT_APP_BASE_URL}/`;
 
 export const Listing = () => {
 
+    // *********************
+    //       States
+    // *********************
+
     // for the view buttons
     const [checked, setChecked] = useState(false);
     const [view, setView] = useState('grid');
@@ -40,12 +45,22 @@ export const Listing = () => {
 
     // for Filtering 
     const [filters, setFilters] = useState({
-        headphoneType: null,
-        company: null,
-        color: null,
-        price: null,
-      });
-    
+        itype: null,
+        ibrand: null,
+        icolor: null,
+        iprice: null
+    });
+
+
+
+
+    // *********************
+    //       Controllers
+    // *********************
+    useEffect(() => {
+        fetchData();
+    }, [searchQuery, filters]);     // empty dependancy array ensures that this runs only once on mount  
+
 
     const handleViewChange = (val) => {
         setView(val)
@@ -57,32 +72,38 @@ export const Listing = () => {
         setSearchQuery(e.target.value);
     };
 
-    const fetchData = () => {
-        axios
-            .get(`${process.env.REACT_APP_BASE_URL}/listing`, { params: { search: searchQuery } })
+
+    // filtering 
+    const handleFilterChange = (filterType, key) => {
+        console.log('Previous Filters:', filters);
+        console.log('Changing:', filterType, 'to', key);
+        setFilters((prevFilters) => ({
+            ...prevFilters,
+            [filterType]: key,
+        })
+        );
+    };
+
+    // Sorting 
+
+
+
+
+    // Sending request to server 
+    async function fetchData() {
+        console.log('Search : ', searchQuery)
+        console.log('filter : ', filters)
+        await axios
+            .get(`${process.env.REACT_APP_BASE_URL}/listing`, { params: { search: searchQuery, filter: filters } })
             .then((res) => {
                 console.log("Fetching DB data from server...\n")
                 // console.log(res.data.items)
-                setItems(res.data.items)
+                setItems(res.data.itemsArr)
             })
             .catch((err) => console.log("[ERROR] : in fetching items from db....\n", err))
     }
-    
-
-    
-
-    useEffect(() => {
-        fetchData() ;
-    }, [searchQuery]);     // empty dependancy array ensures that this runs only once on mount  
-
-  
-
-    
-
-    // filtering
 
 
-    // Sorting 
 
     return (
         <>
@@ -120,7 +141,7 @@ export const Listing = () => {
                     <button type="button">
                         <img src={searchIcon} alt="search icon" />
                     </button>
-                    <input type="text" placeholder="Search Product" onInput={handleSearchChange}/>
+                    <input type="text" placeholder="Search Product" onInput={handleSearchChange} />
                 </div>
 
                 {/* buttons for view, filter, sort */}
@@ -143,105 +164,118 @@ export const Listing = () => {
                         <span className={`${styles.filters} filters`}>
 
                             {/* headphone types */}
-                            <Dropdown data-bs-theme="dark">
+                            <Dropdown data-bs-theme="dark" onSelect={(key) => {
+                                handleFilterChange('itype', key);
+                            }}>
                                 <Dropdown.Toggle id="dropdown-button-dark-example1" variant="secondary">
                                     Headphone Type
                                 </Dropdown.Toggle>
 
                                 <Dropdown.Menu>
-                                    <Dropdown.Item href="#/action-1" active>
+                                    <Dropdown.Item eventKey="">
                                         Featured
                                     </Dropdown.Item>
-                                    <Dropdown.Item href="#/action-2">
+                                    <Dropdown.Item eventKey="In-ear headphone">
                                         In-ear headphones
                                     </Dropdown.Item>
-                                    <Dropdown.Item href="#/action-3">
+                                    <Dropdown.Item eventKey="On-ear headphone">
                                         On-ear headphones
                                     </Dropdown.Item>
-                                    <Dropdown.Item href="#/action-4">
+                                    <Dropdown.Item eventKey="Over-ear headphone">
                                         Over-ear headphones
                                     </Dropdown.Item>
                                 </Dropdown.Menu>
                             </Dropdown>
 
                             {/* Company */}
-                            <Dropdown data-bs-theme="dark">
+                            <Dropdown data-bs-theme="dark" onSelect={(key) => {
+                                handleFilterChange('ibrand', key);
+                            }}>
                                 <Dropdown.Toggle id="dropdown-button-dark-example1" variant="secondary">
                                     Company
                                 </Dropdown.Toggle>
 
                                 <Dropdown.Menu>
-                                    <Dropdown.Item href="#/action-1" active>
+                                    <Dropdown.Item eventKey="">
                                         featured
                                     </Dropdown.Item>
-                                    <Dropdown.Item href="#/action-1" active>
+                                    <Dropdown.Item eventKey="JBL">
                                         JBL
                                     </Dropdown.Item>
-                                    <Dropdown.Item href="#/action-2">
+                                    <Dropdown.Item eventKey="Sony">
                                         Sony
                                     </Dropdown.Item>
-                                    <Dropdown.Item href="#/action-3">
+                                    <Dropdown.Item eventKey="boAt">
                                         BoAt
                                     </Dropdown.Item>
-                                    <Dropdown.Item href="#/action-4">
+                                    <Dropdown.Item eventKey="Zebronics">
                                         Zebronics
                                     </Dropdown.Item>
-                                    <Dropdown.Item href="#/action-4">
+                                    <Dropdown.Item eventKey="Marshall">
                                         Marshall
                                     </Dropdown.Item>
-                                    <Dropdown.Item href="#/action-4">
+                                    <Dropdown.Item eventKey="Ptron">
                                         Ptron
                                     </Dropdown.Item>
                                 </Dropdown.Menu>
                             </Dropdown>
 
                             {/* Company */}
-                            <Dropdown data-bs-theme="dark">
+                            <Dropdown data-bs-theme="dark" onSelect={(key) => {
+                                handleFilterChange('icolor', key);
+                            }}>
                                 <Dropdown.Toggle id="dropdown-button-dark-example1" variant="secondary">
                                     Color
                                 </Dropdown.Toggle>
 
                                 <Dropdown.Menu>
-                                    <Dropdown.Item href="#/action-1" active>
+                                    <Dropdown.Item eventKey="">
                                         featured
                                     </Dropdown.Item>
-                                    <Dropdown.Item href="#/action-1" active>
+                                    <Dropdown.Item eventKey="Blue">
                                         Blue
                                     </Dropdown.Item>
-                                    <Dropdown.Item href="#/action-2">
+                                    <Dropdown.Item eventKey="Black">
                                         Black
                                     </Dropdown.Item>
-                                    <Dropdown.Item href="#/action-3">
+                                    <Dropdown.Item eventKey="White">
                                         White
                                     </Dropdown.Item>
-                                    <Dropdown.Item href="#/action-4">
+                                    <Dropdown.Item eventKey="Brown">
                                         Brown
                                     </Dropdown.Item>
                                 </Dropdown.Menu>
                             </Dropdown>
 
                             {/* Price */}
-                            <Dropdown data-bs-theme="dark">
+                            <Dropdown data-bs-theme="dark" onSelect={(key) => {
+                                handleFilterChange('iprice', key);
+                            }}>
                                 <Dropdown.Toggle id="dropdown-button-dark-example1" variant="secondary">
                                     Price
                                 </Dropdown.Toggle>
 
                                 <Dropdown.Menu>
-                                    <Dropdown.Item href="#/action-1" active>
+                                    <Dropdown.Item eventKey="">
                                         featured
                                     </Dropdown.Item>
-                                    <Dropdown.Item href="#/action-2">
+                                    <Dropdown.Item eventKey="0 1000">
                                         ₹0 - ₹1,000
                                     </Dropdown.Item>
-                                    <Dropdown.Item href="#/action-3">
+                                    <Dropdown.Item eventKey="1000 10000">
                                         ₹1,000 - ₹10,000
                                     </Dropdown.Item>
-                                    <Dropdown.Item href="#/action-4">
+                                    <Dropdown.Item eventKey="10000 20000">
                                         ₹10,000 - ₹20,000
                                     </Dropdown.Item>
                                 </Dropdown.Menu>
                             </Dropdown>
 
+                            {/* <Button variant="primary">
+                                { filter != null ? (
+                                    img
+                                ) : () }
+                            </Button> */}
                         </span>
                     </span>
 

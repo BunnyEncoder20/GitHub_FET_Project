@@ -10,7 +10,7 @@ const itemModel = mongoose.model('Items', {
     },
     ilongtitle: String,
     ititle: String, 
-    iprice: String,
+    iprice: Number,
     icolor: String,
     itype: String,
     idesc: String,
