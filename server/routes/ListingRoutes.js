@@ -24,7 +24,7 @@ router.get('/listing', async (req, res) => {
         // Check if filter object is provided
         if (req.query.filter) {
             const filters = req.query.filter;
-            console.log('Filters req : ',req.query.filter)
+            console.log('Filters req : ', req.query.filter)
 
             // Handle each filter type based on the key in the filters object
             if (filters.itype) {
@@ -43,14 +43,28 @@ router.get('/listing', async (req, res) => {
                 // Handle price filter based on your data structure
                 // Example: query.iprice = { $gte: 1000, $lte: 5000 };
                 const [low, high] = filters.iprice.split(' ').map(Number);
-                query.iprice ={ $gte: low , $lte: high};
+                query.iprice = { $gte: low, $lte: high };
             }
         }
 
+        // Check and modify the query based on the sort parameter
+        if (req.query.sort) {
+            if (req.query.sort === 'l2h') {
+              sortCriteria = { iprice: 1 }; // low to high
+            } else if (req.query.sort === 'h2l') {
+              sortCriteria = { iprice: -1 }; // high to low
+            } else if (req.query.sort === 'a2z') {
+              sortCriteria = { ititle: 1 }; // alphabetically
+            } else if (req.query.sort === 'z2a') {
+              sortCriteria = { ititle: -1 }; // reverse alphabetically
+            }
+          }
+
         // finally querying the db
-        console.log('Query : ',query);
-        const itemsArr = await itemModelref.find(query)
+        console.log('Query : ', query);
         
+        const itemsArr = await itemModelref.find(query).sort(sortCriteria);
+
         itemsArr.forEach(element => {
             console.log(element.ititle)
         });

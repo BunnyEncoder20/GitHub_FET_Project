@@ -51,6 +51,9 @@ export const Listing = () => {
         iprice: null
     });
 
+    // for sorting : 
+    const [sortingOption, setSortingOption] = useState('featured');
+
 
 
 
@@ -59,7 +62,7 @@ export const Listing = () => {
     // *********************
     useEffect(() => {
         fetchData();
-    }, [searchQuery, filters]);     // empty dependancy array ensures that this runs only once on mount  
+    }, [searchQuery, filters, sortingOption]);     // empty dependancy array ensures that this runs only once on mount  
 
 
     const handleViewChange = (val) => {
@@ -85,16 +88,20 @@ export const Listing = () => {
     };
 
     // Sorting 
-
+    const handleSortingChange = (sorting) => {
+        setSortingOption(sorting)
+    }
 
 
 
     // Sending request to server 
-    async function fetchData() {
+    const fetchData = async () => {
         console.log('Search : ', searchQuery)
         console.log('filter : ', filters)
+        console.log('sort : ', sortingOption)
+
         await axios
-            .get(`${process.env.REACT_APP_BASE_URL}/listing`, { params: { search: searchQuery, filter: filters } })
+            .get(`${process.env.REACT_APP_BASE_URL}/listing`, { params: { search: searchQuery, filter: filters, sort:sortingOption } })
             .then((res) => {
                 console.log("Fetching DB data from server...\n")
                 // console.log(res.data.items)
@@ -282,17 +289,19 @@ export const Listing = () => {
 
                     {/* sorting */}
                     <span className="sorts">
-                        <Dropdown data-bs-theme="dark" >
+                        <Dropdown data-bs-theme="dark" onSelect={ (key) => {
+                            handleSortingChange(key) ;
+                        }}>
                             <Dropdown.Toggle id="dropdown-button-dark-example1" variant="secondary">
                                 Sort By : Featured
                             </Dropdown.Toggle>
 
                             <Dropdown.Menu>
-                                <Dropdown.Item href="#/action-1" active>Featured</Dropdown.Item>
-                                <Dropdown.Item href="#/action-2">Price : Low to High</Dropdown.Item>
-                                <Dropdown.Item href="#/action-3">Price High to Low</Dropdown.Item>
-                                <Dropdown.Item href="#/action-4">Name : A to Z</Dropdown.Item>
-                                <Dropdown.Item href="#/action-4">Name : Z to A</Dropdown.Item>
+                                <Dropdown.Item eventKey="">Featured</Dropdown.Item>
+                                <Dropdown.Item eventKey="l2h">Price : Low to High</Dropdown.Item>
+                                <Dropdown.Item eventKey="h2l">Price High to Low</Dropdown.Item>
+                                <Dropdown.Item eventKey="a2z">Name : A to Z</Dropdown.Item>
+                                <Dropdown.Item eventKey="zta">Name : Z to A</Dropdown.Item>
                             </Dropdown.Menu>
                         </Dropdown>
                     </span>
