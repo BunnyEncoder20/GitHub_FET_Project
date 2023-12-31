@@ -173,3 +173,10 @@
     border: 1px solid rgba(255, 255, 255, 0.5); /* Transparent white border */
     border-radius: 50px; /* Adjust the border-radius as needed */
 }
+
+
+/* Listing */
+.listing {
+    margin-top: 1%;
+    margin-bottom: 5%;
+}

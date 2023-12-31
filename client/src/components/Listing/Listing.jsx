@@ -10,7 +10,7 @@ import gridicon_active from '../../assets/grid-active.svg'
 import listicon from '../../assets/list.png'
 import listicon_active from '../../assets/list-active.png'
 
-import axios from 'axios';
+
 
 import { Header } from '../Header/Header'
 import { Footer } from '../Footer/Footer'
@@ -220,7 +220,7 @@ export const Listing = () => {
                 </Container>
 
                 {/* Listing */}
-                <Container fluid className="listing">
+                <Container fluid className={styles.listing}>
                     {view === 'grid' ? (
                         <GridView />
                     ) : (
