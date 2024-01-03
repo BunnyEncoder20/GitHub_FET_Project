@@ -73,7 +73,7 @@ export const Listing = () => {
     //Searching 
     const handleSearchChange = (e) => {
         setSearchQuery(e.target.value);
-    };
+    }; 
 
 
     // filtering 

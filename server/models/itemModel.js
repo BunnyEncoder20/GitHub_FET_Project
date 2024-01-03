@@ -19,6 +19,9 @@ const itemModel = mongoose.model('Items', {
 });
 
 module.exports = itemModel;
+
+
+
 // How to display the string encoded base64 images : <img src='data:image/png;base64, 'string_from_db' />
 
 /*

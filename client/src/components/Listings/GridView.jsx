@@ -9,8 +9,6 @@ import { Card, Col, Row } from 'react-bootstrap'
 
 export const GridView = ({ items }) => {
 
-    
-
     return (
         <>
             <Row xs={1} md={4} className={`g-4 ${styles.rows}`}>

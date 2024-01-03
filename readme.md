@@ -1,74 +1,101 @@
 # Development Branch 
-This is the Final Evaluation Test Project Project - an E-Commerce Website Main Branch. All developments
-should only take place in the Development branch. The changes made will be merged into the Main branch
-later on.
+This is the Final Evaluation Test Project Project - an E-Commerce Website Main Branch. All developments should only take place in the Development branch. The changes made will be merged into the Main branch later on.
+
+---
 
 # Feature Branches 
 This branches are made whenever I work on new feature. until the feature is not completed, these are not 
 merged back into the development back into the development branch. Once a feature is completed, it is merged 
 into the development branch 
 
+---
 
 ## Client : 
-npx create-react-app . 
 
-npm install react-bootstrap bootstrap   // installing react-bootstrap
-{
-    // add the following line in App.js for importing bootstrap : 
-    import 'bootstrap/dist/css/bootstrap.min.css';
-}
+**Installations** 
+1. installing react app
+```
+npx create-react-app .
+```
+2. installing react-bootstrap
+```
+npm install react-bootstrap bootstrap   
+```
+3. add the following line in App.js for importing bootstrap css :
+``` 
+import 'bootstrap/dist/css/bootstrap.min.css'; 
+```
 
-// PS : 
+**PS :** 
     1. don't use both bootstrap and tailwindcss in the same project, will cause issues 
     2. It is better to use CRA to create the react app when using Bootstrap
     3. If you to add more styling/modify, create a component.css in that components's folder and add teh css there
 
 
 
-
+---
 ## Server : 
+
+**Installations**
+```
 npm init
-npm i express ejs body-parser dotenv mongoose
-New-Item -ItemType Directory -Path "middlewares" , "models" , "routes"
+npm i express ejs body-parser dotenv mongoose bycrypt cors jsonwebtoken
+```
+Crating whatever folders we want from the terminal : 
+```
+New-Item -ItemType Directory -Path "middlewares" "models" , "routes"
+```
 
-Better way to nodemon : 
-1. Installing it globally : npm i nodemon -g
-2. To run the server : nodemon fileName.js 
-3. npm i -D nodemon - development installation
 
-### To checkout the installed npm packages : 
+- Better way to nodemon
+    1. Installing it globally : npm i nodemon -g
+    2. To run the server : nodemon fileName.js 
+    3. npm i -D nodemon - development installation
+
+***To checkout the installed npm packages :***
+```
 npm ls --depth=0
-
-
-### Making the production grade folders for the project : 
+```
 ---
-**New-Item -ItTemType Directory -Path "controller"s", "db", "middlewares", "models",e "routes", "utils"**
-Above is a line to create folders (directories) using powershell
-1. Controllers - where major functionality kept here
-2. db - folder where how to connect to our db is kept 
-3. middlewares - code which is middle of comms. eg : get me the request machine cookies to check if they have access to this information from the servers
-4. models - where all the data models are kept 
-5. routes - the routes to various pages are kept here
-6. utils - short for utilities. eg : uploading files,folders or emailing 
+
+### Making the production grade folders for the project
+```
+New-Item -ItTemType Directory -Path "controller"s", "db", "middlewares", "models",e "routes", "utils"
+```
+- Above is a line to create folders (directories) using powershell
+    - Controllers - where major functionality kept here
+    - db - folder where how to connect to our db is kept 
+    - middlewares - code which is middle of comms. eg : get me the request machine cookies to check if they have access to this information from the servers
+    - models - where all the data models are kept 
+    - routes - the routes to various pages are kept here
+    - utils - short for utilities. eg : uploading files,folders or emailing 
 
 
-### Production level Project tips 
+### Production level Project tips
+1. install Prettier for constant formatting of the code : 
+```
+npm i -D prettier
+```
+- make file : ```.prettierrc``` (outside the src folder)
+- add configuration to it like : 
+```
+    "singleQoute":false,
+    "bracketSpacing":true,
+    "tabWidth":2,
+    "trailingComma":"es5",
+    "semi":true
+```
+
+- make ```.prettierignore``` file (for files on which you don't want prettier to work on )
+- basic files to add inside of this file can be : 
+```
+/.vscode
+/node_modules
+./dist
+*.env
+.env 
+.env.*
+```
 ---
-1. install Prettier for constant formatting of the code : npm i -D prettier
-    - make file : .prettierrc (outside the src folder)
-    - add configuration to it like : 
-        {
-            "singleQoute":false,
-            "bracketSpacing":true,
-            "tabWidth":2,
-            "trailingComma":"es5",
-            "semi":true
-        }
-    - make .prettierignore file (for files on which you don't want prettier to work on )
-    - basic files to add inside of this file can be : 
-        /.vscode
-        /node_modules
-        ./dist
-        *.env
-        .env 
-        .env.*
+### Site to convert imgs into base 64 strings for storing in mongodb : 
+- https://codebeautify.org/png-to-base64-converter
