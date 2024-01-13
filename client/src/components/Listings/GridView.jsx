@@ -15,7 +15,7 @@ export const GridView = ({ items }) => {
                 {items.map((item, idx) => (
                     <Col key={idx} md={3} className='mb-4 d-flex align-items-center justify-content-center'>
                         <Card className={`d-flex align-items-center justify-content-center ${styles.cards} w-100 border-0`}>
-                            <Card.Img variant="top" src={`data:image/png;base64,${item.mainImage}`} alt={`Image ${idx}`} className={`${styles.cardImgs}`}/>
+                            <Card.Img variant="top" src={item.mainImage} alt={`Image ${idx}`} className={`${styles.cardImgs}`}/>
                             <Card.Body className='text-start'>
                                 <Card.Title className={styles.titles} >{item.ititle}</Card.Title>
                                 <Card.Text className={styles.cardtexts} >Price - ₹{item.iprice}</Card.Text>

@@ -182,13 +182,13 @@ export const Listing = () => {
                                     <Dropdown.Item eventKey="">
                                         Featured
                                     </Dropdown.Item>
-                                    <Dropdown.Item eventKey="In-ear headphone">
+                                    <Dropdown.Item eventKey="In-ear headphones">
                                         In-ear headphones
                                     </Dropdown.Item>
-                                    <Dropdown.Item eventKey="On-ear headphone">
+                                    <Dropdown.Item eventKey="On-ear headphones">
                                         On-ear headphones
                                     </Dropdown.Item>
-                                    <Dropdown.Item eventKey="Over-ear headphone">
+                                    <Dropdown.Item eventKey="Over-ear headphones">
                                         Over-ear headphones
                                     </Dropdown.Item>
                                 </Dropdown.Menu>
