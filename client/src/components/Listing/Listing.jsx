@@ -24,7 +24,7 @@ import { Link, useNavigate } from "react-router-dom"
 import { Dropdown, DropdownButton, ToggleButtonGroup, ToggleButton, Breadcrumb, Button, Container } from 'react-bootstrap';
 
 // Importing breadcrumb Links 
-const homeLink = `${process.env.REACT_APP_BASE_URL}/`;
+const homeLink = `http://localhost:3000/`;
 
 
 export const Listing = () => {
@@ -101,7 +101,7 @@ export const Listing = () => {
         console.log('sort : ', sortingOption)
 
         await axios
-            .get(`${process.env.REACT_APP_BASE_URL}/listing`, { params: { search: searchQuery, filter: filters, sort:sortingOption } })
+            .get(`http://localhost:4000/FET/listing`, { params: { search: searchQuery, filter: filters, sort:sortingOption } })
             .then((res) => {
                 console.log("Fetching DB data from server...\n")
                 // console.log(res.data.items)

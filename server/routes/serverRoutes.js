@@ -83,8 +83,10 @@ router.post('/login', async (req, res) => {
 // Route for signup
 router.post('/signup', async (req, res) => {
     try {
+        console.log("[SERVER]:req body recieved")
         console.log(req.body)
         const { uname, umobile, uemail, upwd } = req.body;
+
         // Check if the required properties are present in the request body
         if (!uname || !umobile || !uemail || !upwd) {
             return res.status(400).json({
@@ -96,6 +98,8 @@ router.post('/signup', async (req, res) => {
         // else making the document 
         let saltRounds = 10 //this is basically the rounds of encryption the password will undergo
         const encryptedPassword = await bcrypt.hash(upwd, saltRounds);   // 
+        console.log("[Server] Password encrypted successfully")
+
         await userModelref.create({
             name: uname,
             phone: umobile,
@@ -107,6 +111,8 @@ router.post('/signup', async (req, res) => {
             user: uname,
             msg: ' user added'
         })
+
+        console.log("[MONGODB] User Added successfully")
     }
     catch (err) {
         console.log(err);

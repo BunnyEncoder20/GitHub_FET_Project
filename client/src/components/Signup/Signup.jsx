@@ -28,7 +28,7 @@ export const Signup = () => {
 
 
         axios
-            .post(`${process.env.REACT_APP_BASE_URL}/signup`, newUser)          // notice that we are using a post call here and sending the data in the 2nd param
+            .post(`http://localhost:4000/FET/signup`, newUser)          // notice that we are using a post call here and sending the data in the 2nd param
             .then(() => {
                 console.log("User sent Successfully !")
 
@@ -40,7 +40,7 @@ export const Signup = () => {
                     upwd: ''
                 })
 
-                navigate('/login');
+                navigate('/login');     // redirecting to the Login page
             }
             )
             .catch((err) => console.log("[ERROR] : ", err))

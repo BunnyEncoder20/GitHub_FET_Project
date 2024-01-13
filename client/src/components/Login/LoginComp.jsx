@@ -23,7 +23,7 @@ export const LoginComp = () => {
         e.preventDefault()
         console.log("HandleSubmit called !");
         axios
-            .post(`${process.env.REACT_APP_BASE_URL}/login`, user)          // notice that we are using a post call here and sending the data in the 2nd param
+            .post(`http://localhost:4000/FET/login`, user)          // notice that we are using a post call here and sending the data in the 2nd param
             .then((res) => {
                 console.log("User sent Successfully !\n", res.data)
                 const jwtToken = res.data.token;
