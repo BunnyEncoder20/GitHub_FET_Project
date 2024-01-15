@@ -16,7 +16,7 @@ router.get('/listing', async (req, res) => {
 
         // check if param search is there and not an empty string. Add it to the query  
         if (req.query.search && req.query.search.trim() !== '') {
-            console.log(req.query);
+            // console.log(req.query);
             // Case-insensitive search for item titles
             query.ititle = { $regex: new RegExp(req.query.search, 'i') };
         }
@@ -24,7 +24,7 @@ router.get('/listing', async (req, res) => {
         // Check if filter object is provided
         if (req.query.filter) {
             const filters = req.query.filter;
-            console.log('Filters req : ', req.query.filter)
+            // console.log('Filters req : ', req.query.filter)
 
             // Handle each filter type based on the key in the filters object
             if (filters.itype) {
@@ -67,9 +67,9 @@ router.get('/listing', async (req, res) => {
         
         const itemsArr = await itemModelref.find(query).sort(sortCriteria);
 
-        itemsArr.forEach(element => {
-            console.log(element.ititle)
-        });
+        // itemsArr.forEach(element => {
+        //     console.log(element.ititle)
+        // });
 
         res.json({
             itemsArr

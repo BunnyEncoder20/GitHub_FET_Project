@@ -14,7 +14,7 @@ export const Header = () => {
                 Get 50% off on selected items | Shop Now
             </span>
             <span className='login'>
-                <a href="#">Login</a> {' '} | {' '} <a href="#">Signup</a>
+                <a href="http://localhost:3000/Login">Login</a> {' '} | {' '} <a href="http://localhost:3000/register">Signup</a>
             </span>
 
         </section>

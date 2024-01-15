@@ -1,0 +1,58 @@
+.cardBody {
+    display: flex;
+    justify-content: left;
+    flex-direction: row;
+}
+
+.rhs {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: baseline;
+
+    padding-left: 2.9375rem;
+}
+
+.cardImgs {
+    width: 273px;
+    height: 273px;
+    flex-shrink: 0;
+    border: 20px solid rgba(0, 102, 255, 0.17);
+}
+
+.cardTitle {
+    color: #000;
+    font-family: 'Roboto', sans-serif;
+    font-size: 2rem;
+    font-style: normal;
+    font-weight: bold;
+    line-height: normal;
+    text-align: left;
+
+    padding-bottom: 1rem;
+}
+
+.cardTexts {
+    color: #000;
+    font-family: 'Roboto', sans-serif;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    text-align: left;
+}
+
+.detailsBtn {
+    width: 150px;
+    height: 48px;
+    flex-shrink: 0;
+    border-radius: 26.121px;
+    background: #2E0052;
+
+    color: #FFF;
+    font-family: 'Roboto', sans-serif;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
